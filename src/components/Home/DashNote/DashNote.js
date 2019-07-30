@@ -1,15 +1,24 @@
 import React from "react";
 
-// id={strain._id} 
+// id={strain.id} 
 // name={strain.name} 
-// inStock={strain.inStock}
+// instock={strain.inStock}
+// stocking={strain.isStocked}
 
 function DashNote (props) {
 
   return (
-    <button type="button" instock={props.inStock} data-toggle="modal" data-target={"#module" + props.id} className="list-group-item list-group-item-action dashNote">
-      {props.name}
-    </button>
+    <div>
+      {props.stocking ? (
+
+        <button type="button" instock={props.inStock} data-toggle="modal" data-target={"#module" + props.id} className="list-group-item list-group-item-action dashNote">
+        {props.name}
+
+        <span className="badge badge-success">In Stock!</span>
+        </button>
+      ):(<div></div>)}
+      </div>
+
   )
 }
 

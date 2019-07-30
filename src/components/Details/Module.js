@@ -15,11 +15,17 @@ function Module(props) {
                     <div className="modal-header">
                         <h4 className="modal-title"> {props.name} </h4>
                     </div>
+                    <img className="itemImg" src={props.img} alt="No image avalible"/>
                     <div className="modal-body">
                         <p> {props.info} </p>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                        {props.stocking ? (
+                            <button type="button" className="btn btn-danger">Stop Stocking</button>
+                        ):(
+                            <button type="button" className="btn btn-success">Stock this!</button>
+                        )}
+                        <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 

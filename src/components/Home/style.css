@@ -2,6 +2,8 @@
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15%;
+
 }
 
 .home {
@@ -9,6 +11,9 @@
   margin-right: auto;
 }
 
+.badge {
+  float: right;
+}
 
 
 

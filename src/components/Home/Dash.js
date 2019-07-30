@@ -14,7 +14,6 @@ const config = {
 };
 
 firebase.initializeApp(config);
-
 const database = firebase.database();
 const ref = database.ref('strains');
 
@@ -52,6 +51,7 @@ class Dash extends React.Component {
                                   id={strain.id} 
                                   name={strain.name} 
                                   instock={strain.inStock}
+                                  stocking={strain.isStocked}
                                   />   
 
                                   <Module
@@ -60,6 +60,8 @@ class Dash extends React.Component {
                                   info={strain.information}
                                   instock={strain.inStock}
                                   date={strain.date}
+                                  stocking={strain.isStocked}
+                                  img={strain.imgUrl}
                                   /> 
                                   </div>
                      

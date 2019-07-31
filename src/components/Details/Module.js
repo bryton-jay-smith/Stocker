@@ -4,17 +4,63 @@ import firebase from "../../firebase";
 
 class Module extends React.Component {
 
-    Remove= (idnum) => {
-        console.log("idnum");
-        
-        firebase.database().ref('strains/' + idnum ).set({
+    constructor() {
+        super();
+        this.Remove = this.Remove.bind(this);
+        this.Add = this.Add.bind(this);
+      }
+     
+            // let id=  this.props.id;
+            // let name=  this.props.name;
+            // let info= this.props.informatio;
+            // let instock= this.props.stocking;
+            // let date= this.props.date;
+            // let isStocked= this.props.isStocked;
+      
+     
+
+    Remove = () => {
+        let id=  this.props.id;
+        let name=  this.props.name;
+        let info= this.props.info;
+        let instock= this.props.instock;
+        let date= this.props.date;
+        let img= this.props.img;
+        //let isStocked= this.props.isStocked;
+        firebase.database().ref('strains/' + id ).set({
+            id: id,
+            name: name ,
+            information:info,
+            inStock:instock,
+            date:date,
+            imgUrl: img,
             isStocked: false
           });
+          this.forceUpdate();
     }
 
-    componentDidMount() {
-        
+    Add = () => {
+        let id=  this.props.id;
+        let name=  this.props.name;
+        let info= this.props.info;
+        let instock= this.props.instock;
+        let date= this.props.date;
+        let img= this.props.img;
+        //let isStocked= this.props.isStocked;
+        firebase.database().ref('strains/' + id ).set({
+            id: id,
+            name: name ,
+            information:info,
+            inStock:instock,
+            date:date,
+            imgUrl: img,
+            isStocked: true
+          });
+          this.forceUpdate();
     }
+
+
+
     render () {
     return (
         <div id={"module" + this.props.id} className="modal fade" role="dialog">
@@ -30,9 +76,9 @@ class Module extends React.Component {
                     </div>
                     <div className="modal-footer">
                         {this.props.stocking ? (
-                            <button id="remove" onClick={() => this.Remove.bind(this, this.props.id)} type="button" className="btn btn-danger">Stop Stocking</button>
+                            <button id="remove" onClick={() => this.Remove()} type="button" className="btn btn-danger">Stop Stocking</button>
                         ):(
-                            <button id="add"  type="button" className="btn btn-success">Stock this!</button>
+                            <button id="add"  onClick={() => this.Add()} type="button" className="btn btn-success">Stock this!</button>
                         )}
                         <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>

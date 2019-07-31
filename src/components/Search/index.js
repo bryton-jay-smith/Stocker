@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 //import Input from "./Input";
 import Results from "./Results";
-import firebase from "firebase";
+import firebase from "../../firebase";
 import Module from "../Details/Module";
 //import DashNote from "../Home/DashNote";
 

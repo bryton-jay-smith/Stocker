@@ -1,29 +1,38 @@
 import React from "react";
+import firebase from "../../firebase";
 
-// id={strain._id}
-// name={strain.name} 
-// info={strain.information}
-// instock={strain.inStock}
-// date={strain.date}
 
-function Module(props) {
+class Module extends React.Component {
+
+    Remove= (idnum) => {
+        console.log("idnum");
+        
+        firebase.database().ref('strains/' + idnum ).set({
+            isStocked: false
+          });
+    }
+
+    componentDidMount() {
+        
+    }
+    render () {
     return (
-        <div id={"module" + props.id} className="modal fade" role="dialog">
+        <div id={"module" + this.props.id} className="modal fade" role="dialog">
             <div className="modal-dialog">
 
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h4 className="modal-title"> {props.name} </h4>
+                        <h4 className="modal-title"> {this.props.name} </h4>
                     </div>
-                    <img className="itemImg" src={props.img} alt="No image avalible"/>
+                    <img className="itemImg" src={this.props.img} alt="Not avalible"/>
                     <div className="modal-body">
-                        <p> {props.info} </p>
+                        <p> {this.props.info} </p>
                     </div>
                     <div className="modal-footer">
-                        {props.stocking ? (
-                            <button type="button" className="btn btn-danger">Stop Stocking</button>
+                        {this.props.stocking ? (
+                            <button id="remove" onClick={() => this.Remove.bind(this, this.props.id)} type="button" className="btn btn-danger">Stop Stocking</button>
                         ):(
-                            <button type="button" className="btn btn-success">Stock this!</button>
+                            <button id="add"  type="button" className="btn btn-success">Stock this!</button>
                         )}
                         <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
@@ -32,6 +41,7 @@ function Module(props) {
             </div>
         </div>
     )
+}
 }
 
 export default Module;
